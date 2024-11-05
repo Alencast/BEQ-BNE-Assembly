@@ -1,0 +1,58 @@
+.text
+main:
+
+addi $2, $0, 5
+syscall
+add $8,$0,$2 #Idade informada
+
+addi $2,$0, 5
+syscall
+add $9, $0, $2 #Tempo de serviço informado
+
+#Variáveis de teste
+addi $10, $0, 65 #Idade limite
+addi $11, $0, 40 #Tempo de serviço limite
+addi $12, $0, 60 #Idade e TS minimos
+addi $13, $0, 36 #Idade e TS minimos
+#----------x-----------
+
+#Verificando se a idade informada é maior que 65
+slt $14, $8, $10 # $14 <= Idade informada < 65 ? 1 : 0
+beq $14, $0, aposentadoriaConcedida 
+#----------x-----------
+
+#Verificando se o tempo de serviço informado é maior que 40
+slt $15, $9, $11 # $15 <= Tempo de serviço < 40 ? 1 : 0
+beq $15, $0, aposentadoriaConcedida
+#----------x-----------
+
+#Verificando se a idade é maior que 60 e o tempo de serviço maior que 36
+slt $16, $8, $12 # $16 <= idade informada < 60 ? 1 : 0
+slt $17, $9, $13 # $17 <= tempo de serviço < 36 1 : 0
+
+add $18, $16, $17 #Soma para verificar se ambos são 0, se forem a aposentadoria será possível
+
+beq $18, $0 , aposentadoriaConcedida
+
+#----------x------------
+
+#Resposta caso a aposentadoria seja falsa:
+
+addi $4, $0, 'N'
+
+
+j fim
+
+aposentadoriaConcedida:
+
+addi $4, $0, 'S'
+
+
+fim:
+
+addi $2, $0, 11
+syscall
+
+
+
+
