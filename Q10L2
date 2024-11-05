@@ -1,0 +1,61 @@
+.text
+main:
+
+addi $2, $0, 5
+syscall
+add $8, $0, $2 #A  8
+
+
+addi $2, $0, 5
+syscall
+add $9, $0, $2 #B 7
+
+
+addi $2, $0, 5
+syscall
+add $10, $0, $2 #C 10
+
+#divisor
+addi $11, $0, 3
+
+#Variável de controle
+addi $12 ,$0, 5
+
+add $13, $8, $9
+add $13, $13, $10 #Total 25
+
+div $13, $11 #Hi =1, lo = 8
+mfhi $14
+mflo $15
+
+slt $14, $14, $12 #$14 <= fração < 5 ? 1 : 0
+beq $14, $0, maior_que_5 #Se retornar 0, a fração é maior que 5
+
+addi $16, $0, 3
+add $4, $0, $15
+j fim
+maior_que_5:
+
+add  $16, $0, $0
+addi $4, $15, 1
+
+fim:
+
+addi $2, $0, 1
+syscall
+
+addi $4, $0, ','
+addi $2,$0, 11
+syscall
+
+add $4,$0, $16
+addi $2,$0,1
+syscall
+
+addi $2,$0,10
+syscall
+
+
+
+
+
