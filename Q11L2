@@ -1,0 +1,75 @@
+.text
+main:
+
+addi $2,$0,5
+syscall
+add $8, $0, $2 #A
+
+
+addi $2,$0,5
+syscall
+add $9, $0, $2 #B
+
+
+addi $2,$0,5
+syscall
+add $10, $0, $2 #C
+
+#Variável de controle
+addi $15, $0, 2
+
+slt $11, $9, $8 #$11 <= B < A ? 1 : 0
+slt $12, $9, $10 #$12 <= B < C ? 1 : 0
+
+add $13, $11, $12
+
+beq $13, $0, picoPositivo
+
+#Verificar pico negativo
+
+beq $13, $15, picoNegativo
+
+#Caso não forme picos
+
+addi $4,$0,'N'
+
+j fim
+
+
+picoPositivo:
+
+addi $4,$0,'+'
+addi $2,$0,11
+syscall
+addi $4,$0,'P'
+
+j fim
+
+
+picoNegativo:
+
+addi $4,$0,'-'
+addi $2,$0,11
+syscall
+addi $4,$0,'P'
+
+
+fim:
+
+
+addi $2,$0,11
+syscall
+
+addi $2,$0,10
+syscall
+
+
+
+
+
+
+
+
+
+
+
