@@ -1,0 +1,51 @@
+#Primeiro, verifica-se se o ano é divisível por 400. Se for, o ano é bissexto.
+#Se o ano não é divisível por 400, verifica-se se é divisível por 100. Se for, não é bissexto.
+#Se o ano não é divisível por 400 nem por 100, verifica-se se é divisível por 4. Se for, é bissexto.
+#Caso não atenda a nenhuma das condições anteriores, o ano não é bissexto.
+
+.text
+main:
+
+addi $2, $0, 5
+syscall
+add $8, $0, $2 #Ano informado
+
+#Variáveis de controle
+addi $9, $0, 400
+addi $10, $0, 100
+addi $11, $0, 4
+#---------------x-----------------
+
+div $8, $9 #O resto da divisão deve ser zero para ser bissexto
+mfhi $12 
+beq $12, $0, bissexto #Se o resto da divisão por 400 for igual à zero o ano é bis
+
+#else Verificação por 100 agora
+div $8, $10 
+mfhi $13
+beq $13, $0, ehDiv100 #Caso seja divisivel por 100, não é bissexto
+
+div $8, $11 
+mfhi $14
+beq $14, $0, bissexto #Se for divisivel por 4 e não por 100, é bissexto
+
+
+ehDiv100:
+
+addi $4, $0, 'F'
+j fim
+
+bissexto:
+addi $4, $0, 'T'
+
+fim:
+
+addi $2, $0, 11
+syscall
+addi $2, $0, 10
+syscall
+
+
+
+
+
