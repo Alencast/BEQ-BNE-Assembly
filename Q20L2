@@ -1,0 +1,40 @@
+.text
+main:
+	addi $2,$0, 5 #j 35
+	syscall
+	add $8, $0, $2
+	
+	addi $2,$0, 5 #i 39
+	syscall
+	add $9, $0, $2
+	
+	addi $2,$0, 5 #m 4
+	syscall
+	add $10, $0, $2
+	
+	div $8, $10 #Hi = 3, lo = 4
+	mfhi $11 # resto de j % m
+	
+	div $9, $10 #Hi = 3, lo = 9
+	mfhi $12
+	
+	beq $11, $12, congruentes
+	
+#Não congruentes:
+
+	addi $4,$0, 'F'
+	addi $2,$0, 11
+	syscall
+	j fim
+
+congruentes:
+	
+	addi $4,$0, 'T'
+	addi $2,$0, 11
+	syscall
+	
+fim:	
+	addi $2, $0, 10
+	syscall
+	
+	
