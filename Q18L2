@@ -1,0 +1,90 @@
+.text
+main:
+#8 9 15 16 17 19
+
+addi $2, $0, 5
+syscall
+add $8, $0, $2 #999
+
+addi $10, $0, 2 #divisor 2
+
+div $8, $10  #Hi = 1, lo = 499
+mfhi $9 # Primeiro bit (lembrar que é ao contrário
+mflo $8
+
+div $8, $10 #Hi = 1 lo 249
+mfhi $11 # Segundo bit
+mflo $8
+
+div $8, $10 #Hi = 1 lo = 124
+mfhi $12 # terceiro bit
+mflo $8
+
+div $8, $10 #Hi = 0, lo = 62
+mfhi $13 #quarto bit
+mflo $8
+
+div $8, $10 #Hi = 0, lo = 31
+mfhi $14 #quinto bit
+mflo $8 
+
+div $8, $10 #hi = 1, lo = 15
+mfhi $15 #sexto bit
+mflo $8 #15
+
+div $8, $10 #Hi = 1, lo = 7 
+mfhi $16 #setimo bit
+mflo $8
+
+div $8, $10 #Hi = 1, lo = 3
+mfhi $17 #oitavo bit
+mflo $8
+
+div $8, $10 #Hi = 2, lo =1
+mfhi $18 #nono bit
+mflo $8 #decimo bit
+
+#Printar resultados:
+
+add $4, $0, $8
+addi $2, $0, 1
+syscall
+
+add $4, $0, $18
+addi $2, $0, 1
+syscall
+
+add $4, $0, $17
+addi $2, $0, 1
+syscall
+
+add $4, $0, $16
+addi $2, $0, 1
+syscall
+
+add $4, $0, $15
+addi $2, $0, 1
+syscall
+
+add $4, $0, $14
+addi $2, $0, 1
+syscall
+
+add $4, $0, $13
+addi $2, $0, 1
+syscall
+
+add $4, $0, $12
+addi $2, $0, 1
+syscall
+
+add $4, $0, $11
+addi $2, $0, 1
+syscall
+
+add $4, $0, $9
+addi $2, $0, 1
+syscall
+
+addi $2, $0, 10
+syscall 
