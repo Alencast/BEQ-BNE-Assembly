@@ -1,0 +1,69 @@
+#C capacidade dos containers
+#P peso total em kg
+
+.text
+main:
+
+	addi $2,$0, 5
+	syscall
+	add $8, $0,$2 #Peso total P 3000kg
+	
+	add $2,$0,5
+	syscall	
+	add $9,$0,$2 # 1500
+	
+	
+	div $8, $9 #Hi = 0, lo = 2
+	mfhi $10
+	mflo $11
+	
+	beq $10, $0, divisivel
+	
+	
+#Caso não seja divisivel:
+
+	addi $11, $11, 1
+	
+	div $8 ,$11 #Hi=0, lo = 3000/3=1000
+	mflo $14
+	
+	add $4,$0,$11
+	addi $2,$0, 1
+	syscall
+	
+	addi $4,$0, '\n'
+	addi $2,$0, 11
+	syscall
+	
+	add $4,$0,$14 # peso dos containers
+	addi $2,$0,1
+	syscall
+	
+	j fim
+	
+			
+
+	
+	
+	
+divisivel: 
+	
+	add $4, $0, $11
+	addi $2,$0,1
+	syscall
+	
+	addi $4,$0, '\n'
+	addi $2, $0, 11
+	syscall
+	
+	add $4, $0, $9
+	addi $2,$0,1
+	syscall
+	
+fim:
+	addi $2, $0, 10
+	syscall
+	
+
+
+	
