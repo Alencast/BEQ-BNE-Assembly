@@ -1,0 +1,113 @@
+.text
+main:
+	addi $2,$0, 5 #10
+	syscall
+	add $8, $0, $2
+	
+	addi $2, $0, 5
+	syscall
+	add $9, $0, $2
+	
+	#divisor 1
+	addi $10, $0, 1000
+	
+	div $8, $10 #Hi= 10, lo = 0
+	mflo $11 # 0 Milhar 
+	mfhi $8 # 10
+	
+	addi $10, $0, 100
+	div $8, $10 #Hi = 10, lo = 0
+	mflo $12 #Centena
+	mfhi $8 # 10
+	
+	addi $10 ,$0, 10
+	div $8, $10 #Hi = 0, lo = 1
+	mflo $13 #dezena
+	mfhi $14 #unidade
+	#-------------------------x-------------------------------
+	
+	
+	#divisor 2
+	addi $10, $0, 1000
+	
+	div $9, $10 #Hi= 10, lo = 0
+	mflo $15 # 0 Milhar 
+	mfhi $9 # 10
+	
+	addi $10, $0, 100
+	div $9, $10 #Hi = 10, lo = 0
+	mflo $16 #Centena
+	mfhi $9 # 10
+	
+	addi $10 ,$0, 10
+	div $9, $10 #Hi = 0, lo = 1
+	mflo $17 #dezena
+	mfhi $18 #unidade
+	#-------------------------x-------------------------------
+	
+	
+	
+	#Print primeiro número
+	add $4, $0, $11 #Milhar
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $12 #centena
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $13 #dezena
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $14 #unidade
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall
+	
+	#Print segundo número
+	add $4, $0, $15 #Milhar
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $16 #centena
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $17 #dezena
+	addi $2,$0, 1
+	syscall
+	addi $4,$0,','
+	addi $2, $0, 11
+	syscall	
+	
+	add $4, $0, $18 #unidade
+	addi $2,$0, 1
+	syscall
+	
+	addi $2,$0,10
+	syscall
+	
+	
+	
+	
+
+	
+	
