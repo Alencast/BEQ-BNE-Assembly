@@ -1,66 +1,69 @@
 .text
 main:
-
-addi $2,$0,5 #10
-syscall
-add $8, $0, $2
-add $9, $0, $2
-
-#divisor
-addi $10, $0, 10
-div $8, $10
-mfhi $20  # unidade
-mflo $8
-addi $10, $0, 10
-div $8, $10
-mfhi $21  # dezena
-mflo $8
-addi $10, $0, 10
-div $8, $10
-mfhi $22  # centena
-mflo $23  # milhar
-
-
-beq $23, $0, esp1 #milhar
-
-add $4, $0, $9
-addi $2, $0, 1
-syscall
-j fim
-
-esp1:
-addi $4,$0,' '
-addi $2,$0, 11
-syscall
-
-beq $22, $0, esp2 #centena
-add $4, $0, $9 # 10
-addi $2, $0, 1
-syscall
-j fim
+	addi $2,$0,5
+	syscall
+	add $8,$0,$2 #780	
+	add $9,$0,$2 #780
+	
+	addi $10, $0, 1000
+	
+	div $8, $10 #Hi =780, Lo = 0
+	
+	mflo $11 # 0 Milhar
+	mfhi $8 #780
+	
+	addi $10, $0, 100
+	
+	div $8, $10 # Hi = 80, Lo = 7
+	mflo $12 #7 Centena
+	mfhi $8 #80
+	
+	addi $10, $0, 10
+	
+	div $8, $10 #hi = 0, lo = 8
+	mfhi $13 #0 unidade
+	mflo $8 #8 dezena
+	
+	beq $11, $0, esp1
+	
+	add $4,$0, $9	
+	j fim
+	
+esp1:   
+	
+	addi $4,$0,' '
+	addi $2,$0,11
+	syscall
+	
+	beq $12, $0, esp2	
+	add $4, $0, $9
+	j fim
 
 esp2:
-addi $4,$0,' '
-addi $2,$0, 11
-syscall
-
-beq $21, $0, esp3 #dezena
-add $4, $0, $9 # 10
-addi $2, $0, 1
-syscall
-j fim
+	addi $4,$0,' '
+	addi $2,$0,11
+	syscall
+	
+	beq $8, $0, esp3	
+	add $4, $0, $9
+	j fim
 
 esp3:
-addi $4,$0,' '
-addi $2,$0, 11
-syscall
-
-add $4,$0,$9
-addi $2, $0, 1
-syscall
+	
+	addi $4,$0,' '
+	addi $2,$0,11
+	syscall
+	j fim
 
 fim:
-addi $2,$0, 10
-syscall
+	
+	add $4,$0, $9
+	addi $2, $0, 1
+	syscall
+	
+	
+	
+	
 
-
+	
+	
