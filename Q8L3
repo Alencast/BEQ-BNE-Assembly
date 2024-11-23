@@ -1,0 +1,62 @@
+#Faça um programa que leia números inteiros diferentes de zero e encontre o menor
+#valor digitado e o maior valor digitado. O programa informa o maior e o menor, um em
+#cada linha, quando o usuário digitar um 0.
+
+.text
+main:	addi $8, $0, 10000000000
+	addi $12, $0, 1
+
+teste:  
+	
+	addi $2,$0,5
+	syscall
+	
+	beq $2, $0, fimFor	
+	
+	slt $9,$8,$2 #$9<- $8 < $2? 1 : 0
+	beq $9, $0, doisEhMenor
+	
+#8EhMenor:
+	 
+	slt $15,$2,$12 # ? 1 : 0
+	beq $15, $0, doisEhMaior
+	
+#12EhMaior:
+	j teste
+
+doisEhMaior:
+	
+	add $12, $0, $2
+	
+	j teste
+
+doisEhMenor:
+
+	add $8, $0, $2
+	
+	j teste
+
+
+fimFor:	
+	add $4, $0, $8
+	addi $2, $0, 1
+	syscall
+	
+	addi $4,$0,'\n'
+	addi $2,$0,11
+	syscall
+	
+	add $4, $0, $12
+	addi $2, $0, 1
+	syscall
+	
+	addi $2,$0, 10
+	syscall
+	 
+	
+
+	
+			
+
+
+	
