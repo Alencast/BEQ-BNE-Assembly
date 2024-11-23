@@ -1,0 +1,32 @@
+#Faça um programa que leia 10 valores e imprima a sua soma.
+
+.text
+main:   addi $2, $0, 5
+	syscall
+	add $8,$0, $2
+	
+	addi $9, $0, 1
+	addi $10, $0, 10
+	
+teste:  beq $9, $10, fimFor
+	
+	addi $2, $0, 5
+	syscall
+	add $8, $8, $2
+	
+	addi $9, $9, 1
+	
+	
+	
+	j teste
+
+fimFor: add $4, $0, $8
+	addi $2, $0, 1
+	syscall
+	
+	addi $2, $0, 10
+	syscall
+			
+
+
+	
