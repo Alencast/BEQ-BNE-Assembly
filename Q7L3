@@ -1,0 +1,32 @@
+#Faça um programa que leia números inteiros diferentes de zero e calcule a soma dos
+#valores positivos. O laço do programa termina quando o usuário digita um valor zero.
+#Em seguida o programa imprime a soma dos valores positivos digitados.
+
+.text
+main:	
+	
+teste:  addi $2, $0, 5
+	syscall
+	slt $9, $0, $2 # $9<- 0 < $2 ? 1 : 0
+	beq $9, $0, fimFor
+	
+	add $8, $8, $2
+		
+	j teste
+	
+fimFor: add $4, $0, $8
+	addi $2, $0, 1
+	syscall
+	
+	addi $2, $0, 10
+	syscall
+	
+	
+	
+	
+
+	
+			
+
+
+	
