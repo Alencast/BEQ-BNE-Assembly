@@ -1,0 +1,32 @@
+#Faça um programa que leia números inteiros e calcule a soma. O laço do programa
+#termina quando o usuário digita um valor negativo. Em seguida o programa imprime a
+#soma dos valores digitados.
+
+.text
+main:	addi $10, $0, 1
+	
+teste:  addi $2, $0, 5
+	syscall
+	slt $9, $2, $0 # $9<- $8 < 0 ? 1 : 0
+	beq $9, $10, fimFor
+	
+	add $8, $8, $2
+		
+	j teste
+	
+fimFor: add $4, $0, $8
+	addi $2, $0, 1
+	syscall
+	
+	addi $2, $0, 10
+	syscall
+	
+	
+	
+	
+
+	
+			
+
+
+	
