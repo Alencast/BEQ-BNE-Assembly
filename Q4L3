@@ -1,0 +1,41 @@
+#Faça um programa que leia do usuário um intervalo fechado e imprima os números
+#pares desse intervalo (inclusive os limites).
+
+.text
+main:   addi $2, $0, 5 
+	syscall
+	add $8, $0, $2 #Inicio do invervalo
+	
+	addi $2, $0, 5
+	syscall
+	add $9, $0, $2 #Final do invervalo
+	addi $9, $9, 1 #Para incluir o número final também
+	
+	addi $10, $0, 2 #Divisor para achar os pares no For
+	
+teste:  beq $8, $9, fimFor
+	
+	div $8, $10 #Hi = 0? então é par
+	mfhi $11
+	
+	beq $11, $0, par
+	addi $8, $8, 1	
+	j teste
+
+par:	add $4, $0, $8
+	addi $2, $0, 1
+	syscall
+	
+	addi $4, $0, '\n'
+	addi $2, $0, 11
+	syscall
+	
+	addi $8, $8, 1
+	
+	j teste
+	
+fimFor: addi $2, $0, 10
+	syscall
+	
+	
+	
