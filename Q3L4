@@ -1,0 +1,30 @@
+.text
+main:
+
+	addi $2, $0, 5
+	syscall
+	add $6,$0, $2
+	addi $6, $6, 1
+	addi $5, $0, 0
+	
+	jal DesenhaLinha
+	
+	addi $2, $0, 10
+	syscall
+	
+
+DesenhaLinha:
+	
+	addi $5, $5, 1
+	beq $6, $5, fimFor
+	
+	addi $4, $0, '='
+	addi $2, $0, 11
+	syscall
+	
+	j DesenhaLinha
+	
+fimFor:
+	
+	jr $31
+	
