@@ -1,0 +1,52 @@
+#Faça um programa para calcular o MDC de dois números fornecidos pelo usuário,
+#usando o algoritmo de Euclides (busque na Internet o funcionamento desse
+#algoritmo).
+.test
+main:
+	addi $2,$0, 5
+	syscall
+	add $8, $0, $2
+	
+	addi $2,$0, 5
+	syscall
+	add $9, $0, $2
+	
+	slt $10, $8, $9 # $8 < $9 ? 1 : 0
+	beq $10, $0, oitoEhMaior
+	
+#noveEhMaior:
+	
+	add $10, $0, $9 #A
+	add $11, $0, $8	#B
+	
+	j teste
+	
+oitoEhMaior:
+	
+	add $10, $0, $8 #A = 48
+	add $11, $0, $9	#B =  18
+	
+	j teste
+	
+
+	
+teste: 
+	beq $11, $0, fimFor
+	
+	div $10, $11 # Hi = 12, lo = 2
+	add $10, $0, $11
+	mfhi $11
+	
+	j teste
+	
+fimFor:
+	
+	add $4, $0, $10
+	addi $2, $0, 1
+	syscall
+	
+	addi $2, $0, 10
+	syscall
+	
+	
+	
