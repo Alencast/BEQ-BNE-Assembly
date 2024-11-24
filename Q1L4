@@ -1,0 +1,31 @@
+#Crie uma função que recebe como parâmetro um número inteiro e devolve o seu dobro.
+.text
+main:
+
+	addi $2,$0,5
+	syscall
+	
+	add $4, $0, $2
+	
+	jal dobro
+	
+	addi $2, $0, 10
+	syscall
+	
+	
+	
+
+
+
+dobro:
+	add $4, $4, $4
+	
+	addi $2, $0, 1
+	syscall
+	
+	jr $31
+	
+
+	
+	
+	
