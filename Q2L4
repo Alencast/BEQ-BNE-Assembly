@@ -1,0 +1,50 @@
+#Faça uma função para verificar se um número é positivo ou negativo. Sendo que o
+#valor de retorno será 1 se positivo, -1 se negativo e 0 se for igual a 0.
+
+.text
+main:
+	addi $2, $0, 5
+	syscall
+	
+	add $4, $0, $2
+	
+	jal sinal
+	
+	addi $2, $0, 10
+	syscall
+	
+sinal:
+	
+	beq $4, $0, igualZero	
+	
+	slt $5, $4, $0 # $4 < $0 ? 1 : 0
+	
+	beq $5, $0, maiorQueZero
+	
+#menor que zero	
+	
+	addi $4, $0, -1
+	addi $2, $0, 1
+	syscall
+	
+	j end
+	
+igualZero:
+
+	addi $4,$0,0
+	addi $2, $0, 1
+	syscall
+	
+	j end
+
+maiorQueZero:
+	
+	addi $4,$0,1
+	addi $2, $0, 1
+	syscall
+	
+	j end
+
+end:	
+	jr $31
+	
